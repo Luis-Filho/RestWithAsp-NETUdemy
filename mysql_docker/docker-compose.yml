@@ -1,0 +1,25 @@
+version: '3.8'
+
+services: 
+  mysqlsrv:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: "1101"
+      MYSQL_DATABASE: "rest_with_asp_net_udemy"
+    ports:
+      - "3306:3306"
+    volumes: 
+      - D:\_cursos\Docker\data\mysql_docker\bds:/var/lib/mysql
+    networks:
+      - minha-rede
+
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+    networks:
+      - minha-rede
+
+networks:
+  minha-rede:
+    driver: bridge
