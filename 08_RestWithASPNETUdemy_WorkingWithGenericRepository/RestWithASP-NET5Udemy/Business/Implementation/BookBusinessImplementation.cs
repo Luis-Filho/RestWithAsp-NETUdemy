@@ -6,8 +6,8 @@ namespace RestWithASP_NET5Udemy.Business.Implementation
 {
     public class BookBusinessImplementation : IBookBusiness
     {
-        private readonly IBookRepository _repository;
-        public BookBusinessImplementation(IBookRepository repository) =>
+        private readonly IRepository<Book> _repository;
+        public BookBusinessImplementation(IRepository<Book> repository) =>
             _repository = repository;
 
         public List<Book> FindAll() =>
