@@ -21,7 +21,6 @@ namespace RestWithASP_NET5Udemy.Repository.Implementation
             }
             catch (Exception)
             {
-
                 throw;
             }
 
@@ -53,7 +52,7 @@ namespace RestWithASP_NET5Udemy.Repository.Implementation
 
         public Person Update(Person person)
         {
-            if (!Exists(person.Id)) return new Person();
+            if (!Exists(person.Id)) return null;
 
             var result = _context.Persons.SingleOrDefault(x => x.Id == person.Id);
 
