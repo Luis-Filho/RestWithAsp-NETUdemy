@@ -1,10 +1,7 @@
-﻿using System.Text.Json.Serialization;
-
-namespace RestWithASP_NET5Udemy.Data.VO
+﻿namespace RestWithASP_NET5Udemy.Data.VO
 {
     public class PersonVO
     {
-        //[JsonPropertyName("Code")]
         public long Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
