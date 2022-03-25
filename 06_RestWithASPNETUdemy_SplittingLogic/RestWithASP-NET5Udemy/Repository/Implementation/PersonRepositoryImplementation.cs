@@ -3,14 +3,13 @@ using RestWithASP_NET5Udemy.Model.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 
-namespace RestWithASP_NET5Udemy.Services.Implementation
+namespace RestWithASP_NET5Udemy.Repository.Implementation
 {
-    public class PersonServiceImplementation : IPersonService
+    public class PersonRepositoryImplementation : IPersonRepository
     {
         private MySQLContext _context;
-        public PersonServiceImplementation(MySQLContext context) =>
+        public PersonRepositoryImplementation(MySQLContext context) =>
             _context = context;
 
         public Person Create(Person person)
@@ -71,7 +70,7 @@ namespace RestWithASP_NET5Udemy.Services.Implementation
             return person;
         }
 
-        private bool Exists(long id) =>
+        public bool Exists(long id) =>
             _context.Persons.Any(x => x.Id == id);
     }
 }
