@@ -3,11 +3,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RestWithASP_NET5Udemy.Model
 {
-    [Table("person")]
+    [Table("books")]
     public class Book
     {
         [Column("id")]
-        public int Id { get; set; }
+        public long Id { get; set; }
         [Column("author")]
         public string Author { get; set; }
         [Column("launch_date")]

@@ -46,7 +46,7 @@ namespace RestWithASP_NET5Udemy.Controllers
             return Ok(_personBusiness.Update(person));
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:long}")]
         public IActionResult Delete(long id)
         {
             _personBusiness.Delete(id);

@@ -1,15 +1,14 @@
 ﻿using RestWithASP_NET5Udemy.Model;
 using System.Collections.Generic;
 
-namespace RestWithASP_NET5Udemy.Repository
+namespace RestWithASP_NET5Udemy.Business
 {
-    public interface IBookRepository
+    public interface IBookBusiness
     {
         Book Create(Book book);
         Book FindById(long id);
         List<Book> FindAll();
-        Book Update(Book book);
+        Book Update(Book Book);
         void Delete(long id);
-        bool Exists(long id);
     }
 }
