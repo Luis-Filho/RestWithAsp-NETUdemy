@@ -24,9 +24,8 @@ namespace RestWithASPNETUdemy.Hypermedia
         bool IResponseEnricher.CanEnrich(ResultExecutingContext response)
         {
             if (response.Result is OkObjectResult okObjectResult)
-            {
                 return CanEnrich(okObjectResult.Value.GetType());
-            }
+
             return false;
         }
         public async Task Enrich(ResultExecutingContext response)
@@ -34,10 +33,8 @@ namespace RestWithASPNETUdemy.Hypermedia
             var urlHelper = new UrlHelperFactory().GetUrlHelper(response);
             if (response.Result is OkObjectResult okObjectResult)
             { 
-                if(okObjectResult.Value is T model)
-                {
-                    await EnrichModel(model, urlHelper);
-                }
+                if(okObjectResult.Value is T model)                
+                    await EnrichModel(model, urlHelper);                
                 else if (okObjectResult.Value is List<T> collection)
                 {
                     ConcurrentBag<T> bag = new ConcurrentBag<T>(collection);
