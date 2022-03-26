@@ -12,6 +12,9 @@ using Serilog;
 using System;
 using System.Collections.Generic;
 using RestWithASP_NET5Udemy.Repository.Generic;
+using Microsoft.Net.Http.Headers;
+using RestWithASP_NET5Udemy.Hypermedia.Filters;
+using RestWithASP_NET5Udemy.Hypermedia.Enricher;
 
 namespace RestWithASP_NET5Udemy
 {
@@ -43,6 +46,20 @@ namespace RestWithASP_NET5Udemy
                 MigrateDatabase(connection);
             }
 
+            services.AddMvc(options =>
+            {
+                options.RespectBrowserAcceptHeader = true;
+
+                options.FormatterMappings.SetMediaTypeMappingForFormat("xml", MediaTypeHeaderValue.Parse("application/xml"));
+                options.FormatterMappings.SetMediaTypeMappingForFormat("json", MediaTypeHeaderValue.Parse("application/json"));
+            })
+            .AddXmlSerializerFormatters();
+
+            var filterOptions = new HyperMediaFilterOptions();
+            filterOptions.ContentResponseEnricherList.Add(new PersonEnricher());
+
+            services.AddSingleton(filterOptions);
+
             // Versioning API
             services.AddApiVersioning();
 
@@ -70,6 +87,7 @@ namespace RestWithASP_NET5Udemy
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapControllerRoute("DefaultApi", "{controller=values}/{id?}");
             });
         }
 

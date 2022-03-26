@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using RestWithASP_NET5Udemy.Model;
 using RestWithASP_NET5Udemy.Business;
 using RestWithASP_NET5Udemy.Data.VO;
+using RestWithASP_NET5Udemy.Hypermedia.Filters;
 
 namespace RestWithASP_NET5Udemy.Controllers
 {
@@ -21,10 +22,12 @@ namespace RestWithASP_NET5Udemy.Controllers
         }
 
         [HttpGet]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get() =>
             Ok(_personBusiness.FindAll());
 
         [HttpGet("{id:long}")]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get(long id)
         {
             var person = _personBusiness.FindById(id);
@@ -34,6 +37,7 @@ namespace RestWithASP_NET5Udemy.Controllers
         }
 
         [HttpPost]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Post([FromBody] PersonVO person)
         {
             if (person == null) return BadRequest();
@@ -41,6 +45,7 @@ namespace RestWithASP_NET5Udemy.Controllers
         }
 
         [HttpPut]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Put([FromBody] PersonVO person)
         {
             if (person == null) return BadRequest();
