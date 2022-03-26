@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace RestWithASP_NET5Udemy.Data.VO
 {
-    public class PersonVO : ISupportstHyperMedia
+    public class PersonVO : ISupportsHyperMedia
     {
         public long Id { get; set; }
         public string FirstName { get; set; }

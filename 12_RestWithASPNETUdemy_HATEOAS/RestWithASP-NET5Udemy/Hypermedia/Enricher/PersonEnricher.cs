@@ -55,7 +55,7 @@ namespace RestWithASP_NET5Udemy.Hypermedia.Enricher
                 var url = new { controller = path, id = id };
                 return new StringBuilder(urlHelper.Link("DefaultApi", url))
                     .Replace("%2F", "/").ToString();
-            }
+            };
         }
     }
 }
